@@ -9,26 +9,28 @@ import org.aspectj.lang.reflect.MethodSignature;
 @Aspect
 public class ConditionRunAspect {
 
-    @Around("methodsToBeConditionRun(conditionRun)")
-    public Object beforeExecute(ProceedingJoinPoint pjp, ToggleRunner conditionRun) throws Throwable {
-        final ProceedingResult processingResult = isExec(pjp, conditionRun);
+    @Around("methodProxy(toggleRunner)")
+    public Object beforeExecute(ProceedingJoinPoint joinPoint, ToggleRunner toggleRunner) throws Throwable {
+        ProceedingResult processingResult = execute(joinPoint, toggleRunner);
         if (processingResult.shouldBeExecuted()) {
-            return pjp.proceed();
+            return joinPoint.proceed();
         }
+
         return processingResult.getDefaultValue();
     }
 
-    private ProceedingResult isExec(ProceedingJoinPoint pjp, ToggleRunner conditionRun) {
-        try {
-            final Runner runner = conditionRun.value().newInstance();
-            final MethodSignature signature = (MethodSignature) pjp.getSignature();
-            return runner.exec(signature, pjp.getArgs());
-        } catch (Exception e) {
-            throw new RuntimeException("Runner must be empty constructor and make sure the config is ok.", e);
-        }
+    @Pointcut(value = "@annotation(runner)")
+    public void methodProxy(ToggleRunner runner) {
     }
 
-    @Pointcut(value = "@annotation(conditionRun)")
-    public void methodsToBeConditionRun(ToggleRunner conditionRun) {
+    private ProceedingResult execute(ProceedingJoinPoint joinPoint, ToggleRunner toggleRunner) {
+        try {
+            Runner runner = toggleRunner.value().newInstance();
+            MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+
+            return runner.execute(signature, joinPoint.getArgs());
+        } catch (Exception e) {
+            throw new RuntimeException("Runner should have a default constructor.", e);
+        }
     }
 }

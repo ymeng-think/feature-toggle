@@ -7,7 +7,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 public class MockRunnerWithEqualRun implements Runner {
 
     @Override
-    public ProceedingResult exec(MethodSignature signature, Object[] args) {
+    public ProceedingResult execute(MethodSignature signature, Object[] args) {
         return new ProceedingResult(true, "");
     }
 }
