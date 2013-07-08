@@ -20,7 +20,7 @@ public final class Area {
     }
 
     public <T> T create(Class<T> targetClass, Object[] args) {
-        return (T) new ProxyGenerator(targetClass, args)
+        return new ProxyGenerator<T>(targetClass, args)
                 .generate(new MarkedByLocation(), new LocationDependingHandler());
     }
 

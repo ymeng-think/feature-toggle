@@ -4,6 +4,7 @@ import javassist.util.proxy.MethodFilter;
 import javassist.util.proxy.MethodHandler;
 import javassist.util.proxy.ProxyFactory;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class ProxyGenerator<T> {
@@ -16,6 +17,7 @@ public class ProxyGenerator<T> {
         this.constructorArgs = constructorArgs;
     }
 
+    @SuppressWarnings("unchecked")
     public T generate(MethodFilter methodFilter, MethodHandler methodHandler) {
         Class<?>[] argTypes = extractTypes(constructorArgs);
 
@@ -37,7 +39,8 @@ public class ProxyGenerator<T> {
     }
 
     private Class<?>[] extractTypes(Object[] constructorArgs) {
-        return null;
+        Constructor<?> constructor = new ConstructorFinder(targetClass, constructorArgs).find();
+        return constructor.getParameterTypes();
     }
 
 }
