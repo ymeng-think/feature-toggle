@@ -5,6 +5,7 @@ import javassist.util.proxy.MethodHandler;
 import my.think.proxy.ProxyGenerator;
 import my.think.proxy.sample.domain.noshery.McDonalds;
 import my.think.proxy.sample.domain.school.EnglishClass;
+import my.think.proxy.sample.domain.school.Grade;
 import my.think.proxy.sample.domain.school.Teacher;
 import org.junit.Test;
 
@@ -42,6 +43,14 @@ public class ProxyToggleTest {
                 .generate(nullFilter(), nullHandler());
 
         assertTrue(teacher.teach() instanceof EnglishClass);
+    }
+
+    @Test
+    public void should_create_proxy_with_constructor_that_includes_primitive_data_type() {
+        Grade grade = new ProxyGenerator<Grade>(Grade.class, new Object[]{100})
+                .generate(nullFilter(), nullHandler());
+
+        assertThat(grade.value(), is(100.0));
     }
 
     private MethodFilter nullFilter() {

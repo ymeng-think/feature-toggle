@@ -39,10 +39,41 @@ class ConstructorFinder {
     }
 
     private boolean isCompatible(Class<?> type, Object object) {
+        if (isBoolean(object) && isBooleanCompatible(type, object.getClass())) {
+            return true;
+        }
+
+        if (isNumeric(object) && isNumericCompatible(type, object.getClass())) {
+            return true;
+        }
+
         if (type.isInstance(object)) {
             return true;
         }
 
         return false;
+    }
+
+    private boolean isNumericCompatible(Class<?> type1, Class<?> type2) {
+        return new NumericCompatibility(type1, type2).isCompatible();
+    }
+
+    private boolean isBooleanCompatible(Class<?> unknownType, Class<?> objectType) {
+        return objectType == Boolean.class &&
+                (unknownType == boolean.class || unknownType == Boolean.class);
+    }
+
+    private boolean isBoolean(Object object) {
+        return object.getClass() == Boolean.class;
+    }
+
+    private boolean isNumeric(Object object) {
+        Class<?> clazz = object.getClass();
+        return clazz == Byte.class       ||
+                clazz == Character.class ||
+                clazz == Integer.class   ||
+                clazz == Long.class      ||
+                clazz == Float.class     ||
+                clazz == Double.class;
     }
 }
