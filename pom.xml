@@ -15,6 +15,7 @@
     <modules>
         <module>aspect-runner</module>
         <module>aspect-runner-demo</module>
+        <module>object-proxy</module>
     </modules>
 
     <dependencies>
