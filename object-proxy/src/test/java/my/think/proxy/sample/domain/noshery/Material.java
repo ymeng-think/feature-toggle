@@ -1,6 +1,6 @@
-package my.think.proxy.sample;
+package my.think.proxy.sample.domain.noshery;
 
-import static my.think.proxy.sample.Country.Others;
+import static my.think.proxy.sample.domain.noshery.Country.Others;
 
 class Material {
 

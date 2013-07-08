@@ -1,6 +1,6 @@
-package my.think.proxy.sample;
+package my.think.proxy.sample.domain.noshery;
 
-import static my.think.proxy.sample.Area.area;
+import static my.think.proxy.sample.domain.noshery.Area.area;
 
 public class McDonalds {
 

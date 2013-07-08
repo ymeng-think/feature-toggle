@@ -1,4 +1,4 @@
-package my.think.proxy.sample;
+package my.think.proxy.sample.domain.noshery;
 
 import javassist.util.proxy.MethodFilter;
 import javassist.util.proxy.MethodHandler;

@@ -1,9 +1,10 @@
 package my.think.proxy.sample;
 
+import my.think.proxy.sample.domain.noshery.McDonalds;
 import org.junit.Test;
 
-import static my.think.proxy.sample.Country.Japan;
-import static my.think.proxy.sample.Country.Others;
+import static my.think.proxy.sample.domain.noshery.Country.Japan;
+import static my.think.proxy.sample.domain.noshery.Country.Others;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 

@@ -1,4 +1,4 @@
-package my.think.proxy.sample;
+package my.think.proxy.sample.domain.noshery;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
