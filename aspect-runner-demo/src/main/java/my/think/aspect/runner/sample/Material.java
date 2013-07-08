@@ -18,7 +18,7 @@ class Material {
         return "Meat|";
     }
 
-    @ToggleRunner(MockRunnerWithEqualRun.class)
+    @ToggleRunner(LocationDependingRunner.class)
     @Location(Others)
     public String sauce() {
         return "TomatoSauce|";
