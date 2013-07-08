@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 public class AspectToggleTest {
 
     @Test
-    public void should_not_put_tomato_sauce_in_japan() throws Exception {
+    public void should_not_put_tomato_sauce_in_japan() {
         McDonalds mcDonalds = new McDonalds(Japan);
 
         String hamburgerDesc = mcDonalds.makeHamburg();
@@ -20,7 +20,7 @@ public class AspectToggleTest {
     }
 
     @Test
-    public void should_not_put_tomato_sauce_in_other_countries_of_world() throws Exception {
+    public void should_not_put_tomato_sauce_in_other_countries_of_world() {
         McDonalds mcDonalds = new McDonalds(Others);
 
         String hamburgerDesc = mcDonalds.makeHamburg();
