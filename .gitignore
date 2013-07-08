@@ -1,6 +1,14 @@
+# Idea #
+.idea
+.DS_Store
+*.iml
+
+# Java Objects #
 *.class
 
 # Package Files #
+target/
 *.jar
 *.war
 *.ear
+
