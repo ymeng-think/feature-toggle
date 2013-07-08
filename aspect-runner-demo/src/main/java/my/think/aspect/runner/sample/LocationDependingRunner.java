@@ -13,15 +13,13 @@ public class LocationDependingRunner implements Runner {
             return shouldBeExecuted();
         }
 
-        if (!isJapan(annotation.value())) {
+        Country currentCountry = (Country) args[0];
+        Country expectedScope = annotation.value();
+        if (currentCountry == expectedScope) {
             return shouldBeExecuted();
         }
 
         return new ProceedingResult(false, "");
-    }
-
-    private boolean isJapan(Country country) {
-        return country == Country.Others;
     }
 
     private ProceedingResult shouldBeExecuted() {

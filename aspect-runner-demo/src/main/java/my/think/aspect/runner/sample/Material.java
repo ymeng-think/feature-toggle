@@ -20,7 +20,7 @@ class Material {
 
     @ToggleRunner(LocationDependingRunner.class)
     @Location(Others)
-    public String sauce() {
+    public String sauce(Country country) {
         return "TomatoSauce|";
     }
 }
