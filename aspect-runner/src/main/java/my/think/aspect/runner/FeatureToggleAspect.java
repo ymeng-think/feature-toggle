@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
 @Aspect
-public class ConditionRunAspect {
+public class FeatureToggleAspect {
 
     @Around("methodProxy(toggleRunner)")
     public Object beforeExecute(ProceedingJoinPoint joinPoint, ToggleRunner toggleRunner) throws Throwable {
