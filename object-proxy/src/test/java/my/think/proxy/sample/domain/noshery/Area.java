@@ -2,6 +2,7 @@ package my.think.proxy.sample.domain.noshery;
 
 import javassist.util.proxy.MethodFilter;
 import javassist.util.proxy.MethodHandler;
+import my.think.proxy.DefaultValue;
 import my.think.proxy.ProxyGenerator;
 
 import java.lang.reflect.InvocationTargetException;
@@ -56,42 +57,4 @@ public final class Area {
         }
     }
 
-    private class DefaultValue {
-        private Class<?> type;
-
-        public DefaultValue(Class<?> type) {
-            this.type = type;
-        }
-
-        public Object value() {
-            if (isPrimitiveBoolean()) {
-                return false;
-            }
-            if (isPrimitiveNumber()) {
-                return 0;
-            }
-            if (isString()) {
-                return "";
-            }
-            return null;
-        }
-
-        private boolean isPrimitiveBoolean() {
-            return type == boolean.class;
-        }
-
-        private boolean isString() {
-            return type == String.class;
-        }
-
-        private boolean isPrimitiveNumber() {
-            return type == byte.class   ||
-                    type == char.class  ||
-                    type == short.class ||
-                    type == int.class   ||
-                    type == long.class  ||
-                    type == float.class ||
-                    type == double.class;
-        }
-    }
 }
